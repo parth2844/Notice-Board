@@ -1,0 +1,44 @@
+import React, { useState } from 'react'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+
+
+function JoinGroup() {
+    const[accessCode, setAccessCode] = useState('')
+
+    function handleSubmit (event) {
+        event.preventDefault();
+        
+        console.log(accessCode)
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <Typography variant='h5' align='center'>
+                Join A New Group
+            </Typography>
+            <div>
+                <TextField 
+                required 
+                fullWidth 
+                margin='dense' 
+                variant='filled' 
+                id='code' label='Access Code' 
+                value={accessCode} 
+                type='text' 
+                onChange={({target}) => setAccessCode(target.value)}
+                />
+            </div>
+            
+            
+            <div style={{display: 'flex', justifyContent: 'center', marginTop: '10px'}}>
+                <Button style={{backgroundColor: '#4654a3', color: 'white'}} type='submit' >
+                    Join Group
+                </Button>
+            </div>
+        </form>
+    )
+}
+
+export default JoinGroup

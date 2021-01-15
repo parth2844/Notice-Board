@@ -7,7 +7,7 @@ import Authenticator from '../helpers/authenticator'
 
 function Homepage() {    
     return (    
-        <Grid style={{height: '80vh'}} container>
+        <Grid container>
             <Grid style={myStyle.image} item md={6} xs={12} >
                 <img style={{height: '100%', width: '100%'}} src={window.location.origin + '/images/NoticeBoard-logo.png'} alt="HomePage Image"  />
             </Grid>
