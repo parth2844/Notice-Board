@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 function Login() {
+    const[email, setEmail] = useState('')
+    const[password, setPassword] = useState('')
+
+    function handleSubmit (event) {
+        event.preventDefault();
+        console.log(email)
+        console.log(password)
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div>
                 <TextField 
                 required 
@@ -13,8 +22,9 @@ function Login() {
                 margin='dense' 
                 variant='filled' 
                 id='email' label='Email' 
-                defaultValue='' 
+                value={email}
                 type='email' 
+                onChange={({target}) => setEmail(target.value)}
                 />
             </div>
             <div>
@@ -25,12 +35,13 @@ function Login() {
                 variant='filled' 
                 id='password' 
                 label='Password' 
-                defaultValue='' 
+                value={password}
                 type='password' 
+                onChange={({target}) => setPassword(target.value)}
                 />
             </div>
             <div style={{display: 'flex', justifyContent: 'center', marginTop: '10px'}}>
-                <Button style={{backgroundColor: '#4654a3', color: 'white'}}>
+                <Button style={{backgroundColor: '#4654a3', color: 'white'}} type='submit'>
                     Login
                 </Button>
             </div>

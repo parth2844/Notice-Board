@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 function SignUp() {
+    const[name, setName] = useState('')
+    const[email, setEmail] = useState('')
+    const[password, setPassword] = useState('')
+
+    function handleSubmit (event) {
+        event.preventDefault();
+        console.log(name)
+        console.log(email)
+        console.log(password)
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div>
                 <TextField 
                 required 
@@ -12,9 +23,10 @@ function SignUp() {
                 autoFocus
                 margin='dense' 
                 variant='filled' 
-                id='Name' label='Full Name' 
-                defaultValue='' 
+                id='name' label='Full Name' 
+                value={name} 
                 type='text' 
+                onChange={({target}) => setName(target.value)}
                 />
             </div>
             <div>
@@ -24,8 +36,9 @@ function SignUp() {
                 margin='dense' 
                 variant='filled' 
                 id='email' label='Email' 
-                defaultValue='' 
+                value={email}
                 type='email' 
+                onChange={({target}) => setEmail(target.value)}
                 />
             </div>
             <div>
@@ -36,12 +49,13 @@ function SignUp() {
                 variant='filled' 
                 id='password' 
                 label='Password' 
-                defaultValue='' 
+                value={password}
                 type='password' 
+                onChange={({target}) => setPassword(target.value)}
                 />
             </div>
             <div style={{display: 'flex', justifyContent: 'center', marginTop: '10px'}}>
-                <Button style={{backgroundColor: '#4654a3', color: 'white'}}>
+                <Button style={{backgroundColor: '#4654a3', color: 'white'}} type='submit' >
                     Sign Up
                 </Button>
             </div>
