@@ -13,7 +13,7 @@ function Dashboard() {
             <Grid container>
                 <Grid item md={6} xs={12} >
                     <div style={{padding: '20px'}}>
-                        <ListContainer />
+                        <ListContainer type='group'/>
                     </div>                    
                 </Grid>
                 <Grid item md={6} xs={12} >

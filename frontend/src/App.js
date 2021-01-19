@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import HomePage from './components/pages/homepage'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Dashboard from './components/pages/dashboard';
+import GroupDetails from './components/pages/groupdetails'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path='/dashboard' exact component={Dashboard} />
+          <Route path='/group' exact component={GroupDetails} />
         </Switch>
       </Router>
     </ThemeProvider>
