@@ -1,11 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import HelpIcon from '@material-ui/icons/HelpOutline'
 import Authenticator from '../helpers/authenticator'
+import {ACTIONS} from '../../Actions'
+import {AppContext} from '../../App'
 
 function Homepage() {    
+    const app = useContext(AppContext);
     return (    
         <Grid container>
             <Grid style={myStyle.image} item md={6} xs={12} >

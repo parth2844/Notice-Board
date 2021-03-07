@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import {ACTIONS} from '../../Actions'
+import {AppContext} from '../../App'
 
 function Login() {
+    const app = useContext(AppContext);
     const[email, setEmail] = useState('')
     const[password, setPassword] = useState('')
 
     function handleSubmit (event) {
         event.preventDefault();
+        app.dispatch({ type: ACTIONS.LOGIN_USER, payload: { userId: 'dqwdwe42323' } })
         console.log(email)
         console.log(password)
     }
