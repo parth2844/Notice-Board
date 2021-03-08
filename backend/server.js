@@ -4,6 +4,7 @@ if(process.env.NODE_ENV !== 'production') {
 
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 
@@ -12,6 +13,7 @@ const db = mongoose.connection
 db.on('error', error => console.log(error))
 db.once('open', () => console.log("Connected to MongoDB"))
 
+app.use(cors())
 app.use(express.json())
 
 const usersRouter = require('./routes/users')

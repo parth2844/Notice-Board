@@ -17,7 +17,7 @@ function App() {
       <AppContext.Provider value={{state, dispatch}}>
       <Router>
         <Switch>
-          <Route path="/" exact render={() => <HomePage />} />
+          <Route path="/" exact component={HomePage} />
           <Route path='/dashboard' exact component={Dashboard} />
           <Route path='/group' exact component={GroupDetails} />
           <Route component={Error} />

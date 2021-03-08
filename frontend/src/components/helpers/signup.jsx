@@ -1,17 +1,32 @@
 import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import API from '../../api'
 
 function SignUp() {
     const[name, setName] = useState('')
     const[email, setEmail] = useState('')
     const[password, setPassword] = useState('')
 
-    function handleSubmit (event) {
+    async function handleSubmit (event) {
         event.preventDefault();
         console.log(name)
         console.log(email)
         console.log(password)
+
+        try {
+            let user = await API.post('users/register', {
+                name: name,
+                email: email,
+                password: password
+            });
+
+            alert("Successfully registered")
+        }
+        catch (err) {
+            alert(err.response.data.email)
+        }
+        
     }
 
     return (
