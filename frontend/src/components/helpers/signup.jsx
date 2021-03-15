@@ -24,7 +24,7 @@ function SignUp() {
             alert("Successfully registered")
         }
         catch (err) {
-            alert(err.response.data.email)
+            alert(err.response.data.message)
         }
         
     }
