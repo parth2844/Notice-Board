@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const Group = require('../models/group')
 const getUser = require('./helpers/getUser')
-const verify = require('./helpers/verifyToken')
+const verifyToken = require('./helpers/verifyToken')
 
 // All routes start with /users/
 
@@ -65,11 +65,11 @@ router.post('/logout', async (req, res) => {
 
 
 // Get users groups
-router.get('/groups', verify, getUser, async(req, res) => {
+router.get('/groups', verifyToken, getUser, async(req, res) => {
     
     try {
         const groups = await Group.find({ _id: {$in : res.user.groups }}, 'name users')
-        res.json(groups)
+        res.status(200).json(groups)
     }
     catch(err) {
         res.status(500).json({

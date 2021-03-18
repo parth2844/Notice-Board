@@ -6,8 +6,8 @@ import axios from 'axios';
 const AxiosAPI = {
     baseURL: 'http://localhost:5000/',
 
-    get: function(url, params){
-        return axios.get(this.baseURL + url, {params: params})
+    get: function(url, params, header){
+        return axios.get(this.baseURL + url, params, header)
     },
 
     post: function(url, params, headers){
