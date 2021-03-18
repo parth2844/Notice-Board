@@ -4,16 +4,17 @@ const Group = require('../models/group')
 const User = require('../models/user')
 const getUser = require('./helpers/getUser')
 const getGroup = require('./helpers/getGroup')
+const verifyToken = require('./helpers/verifyToken')
 
 // All routes start with /groups/
 
 // Create new Group and set the user creating group as admin
-router.post('/newGroup', getUser, async (req, res) => { 
+router.post('/newGroup', verifyToken, getUser, async (req, res) => { 
 
     const group = new Group({
         name: req.body.name,
-        users: req.body.userId,
-        admins:  req.body.userId
+        users: res.user._id,
+        admins:  res.user._id
     })
     
     try {
@@ -29,16 +30,16 @@ router.post('/newGroup', getUser, async (req, res) => {
 })
 
 // Add user to a group
-router.patch('/addUser', getUser, getGroup, async (req, res) => {
+router.patch('/addUser', verifyToken, getUser, getGroup, async (req, res) => {
     let user = res.user
     let group = res.group
 
-    if(user.groups.includes(req.body.groupId)) {
+    if(user.groups.includes(group._id)) {
         res.status(400).json({ message: "User already a member of group" })
     }
     else {
-        user.groups.push(req.body.groupId)
-        group.users.push(req.body.userId)
+        user.groups.push(group._id)
+        group.users.push(user._id)
 
         try {
             const updatedUser = await user.save()

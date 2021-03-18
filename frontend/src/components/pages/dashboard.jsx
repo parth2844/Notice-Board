@@ -1,12 +1,17 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Grid from '@material-ui/core/Grid';
 import Navbar from '../helpers/navbar'
 import JoinGroup from '../helpers/joingroup'
 import CreateGroup from '../helpers/creategroup'
 import ListContainer from '../helpers/listcontainer'
 import Welcome from '../helpers/welcome'
+import {AppContext} from '../../App'
+
 
 function Dashboard() {
+    const app = useContext(AppContext);
+
+    console.log(app.state.token)
     return (
         <>
             <Navbar />

@@ -10,8 +10,12 @@ const AxiosAPI = {
         return axios.get(this.baseURL + url, {params: params})
     },
 
-    post: function(url, params){
-        return axios.post(this.baseURL + url, params)
+    post: function(url, params, headers){
+        return axios.post(this.baseURL + url, params, headers)
+    },
+
+    patch: function(url, params, headers){
+        return axios.patch(this.baseURL + url, params, headers)
     }
 }
 

@@ -1,16 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import API from '../../api'
+import {AppContext} from '../../App'
 
 
 function CreateGroup() {
     const[name, setName] = useState('')
+    const app = useContext(AppContext);
 
-    function handleSubmit (event) {
+    async function handleSubmit (event) {
         event.preventDefault();
         
-        console.log(name)
+        try {
+            await API.post('groups/newGroup', 
+            {
+                name: name
+            },
+            {
+                headers: {
+                    'auth-token': app.state.token
+                },
+            }
+            );
+            
+            alert("Group Created")
+        }
+        catch (err) {
+            alert(err.response.data.message)
+        }
     }
 
     return (

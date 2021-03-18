@@ -3,17 +3,39 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import {ACTIONS} from '../../Actions'
 import {AppContext} from '../../App'
+import API from '../../api'
+import { withRouter } from "react-router"
+import { useHistory } from "react-router-dom";
 
 function Login() {
+    let history = useHistory();
     const app = useContext(AppContext);
     const[email, setEmail] = useState('')
     const[password, setPassword] = useState('')
 
-    function handleSubmit (event) {
+    async function handleSubmit (event) {
         event.preventDefault();
-        app.dispatch({ type: ACTIONS.LOGIN_USER, payload: { userId: 'dqwdwe42323' } })
+        
         console.log(email)
         console.log(password)
+
+        try {
+            const token = await API.post('users/login', {
+                email: email,
+                password: password
+            });
+
+            app.dispatch({ type: ACTIONS.LOGIN_USER, payload: { token: token } })
+            console.log(app.state.isLoggedIn)
+            console.log(app.state.token)
+            history.push('/dashboard')
+            // alert("Successfully logged in")
+        }
+        catch (err) {
+            alert(err.response.data.message)
+        }
+
+        
     }
 
     return (
@@ -53,4 +75,4 @@ function Login() {
     )
 }
 
-export default Login
+export default withRouter(Login)
