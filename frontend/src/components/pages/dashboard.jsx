@@ -11,7 +11,6 @@ import {AppContext} from '../../App'
 function Dashboard() {
     const app = useContext(AppContext);
 
-    console.log(app.state.token)
     return (
         <>
             <Navbar />

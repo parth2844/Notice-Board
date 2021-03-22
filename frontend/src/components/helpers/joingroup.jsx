@@ -19,7 +19,7 @@ function JoinGroup() {
             },
             {
                 headers: {
-                    'auth-token': app.state.token
+                    'auth-token': sessionStorage.getItem('jwtToken')
                 },
             }
             );

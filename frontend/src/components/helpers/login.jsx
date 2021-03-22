@@ -15,9 +15,6 @@ function Login() {
 
     async function handleSubmit (event) {
         event.preventDefault();
-        
-        console.log(email)
-        console.log(password)
 
         try {
             const token = await API.post('users/login', {
@@ -26,10 +23,11 @@ function Login() {
             });
 
             app.dispatch({ type: ACTIONS.LOGIN_USER, payload: { token: token } })
-            console.log(app.state.isLoggedIn)
-            console.log(app.state.token)
+            
+            sessionStorage.setItem('jwtToken', token.data)
+
             history.push('/dashboard')
-            // alert("Successfully logged in")
+            alert("Successfully logged in")
         }
         catch (err) {
             alert(err.response.data.message)

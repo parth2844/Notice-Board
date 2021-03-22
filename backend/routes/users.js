@@ -66,7 +66,6 @@ router.post('/logout', async (req, res) => {
 
 // Get users groups
 router.get('/groups', verifyToken, getUser, async(req, res) => {
-    
     try {
         const groups = await Group.find({ _id: {$in : res.user.groups }}, 'name users')
         res.status(200).json(groups)
