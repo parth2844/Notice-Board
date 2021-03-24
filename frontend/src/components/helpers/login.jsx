@@ -23,11 +23,9 @@ function Login() {
                 password: password
             });
 
-            console.log(data.token)
-
             app.dispatch({ type: ACTIONS.SET_USER, payload: { user: data.user } })
             
-            sessionStorage.setItem('user', data.user)
+            sessionStorage.setItem('user', JSON.stringify(data.user))
             sessionStorage.setItem('jwtToken', data.token)
             setAuthToken(data.token)
 
