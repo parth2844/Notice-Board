@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
+import { withRouter } from "react-router"
+import { useHistory } from "react-router-dom";
+import {AppContext} from '../../App'
+import { ACTIONS } from '../../Actions'
 
 function Welcome(props) {
+    const app = useContext(AppContext)
+    const history = useHistory()
     return (
         <>
         <div style={{display: 'flex'}}>
@@ -12,7 +18,14 @@ function Welcome(props) {
         </Typography>
 
         
-        <Button style={{backgroundColor: '#4654a3', color: 'white', marginLeft: 'auto'}} >
+        <Button style={{backgroundColor: '#4654a3', color: 'white', marginLeft: 'auto'}} 
+        onClick={() => {
+                sessionStorage.removeItem('jwtToken')
+                sessionStorage.removeItem('user')
+                app.dispatch({ type: ACTIONS.REMOVE_USER })
+                history.push('/')
+            }
+        }>
             <PowerSettingsNewIcon /> Logout
         </Button>
         
@@ -21,4 +34,4 @@ function Welcome(props) {
     )
 }
 
-export default Welcome
+export default withRouter(Welcome)
