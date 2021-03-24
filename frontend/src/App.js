@@ -10,7 +10,7 @@ import reducer from './Reducer'
 export const AppContext = React.createContext();
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, {})
+  const [state, dispatch] = useReducer(reducer, {isLoggedIn: false, user: undefined})
   
   return (
     <ThemeProvider theme={theme}>

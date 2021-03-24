@@ -6,6 +6,7 @@ import {AppContext} from '../../App'
 import API from '../../api'
 import { withRouter } from "react-router"
 import { useHistory } from "react-router-dom";
+import setAuthToken from '../../setAuthToken'
 
 function Login() {
     let history = useHistory();
@@ -17,17 +18,20 @@ function Login() {
         event.preventDefault();
 
         try {
-            const token = await API.post('users/login', {
+            const {data} = await API.post('users/login', {
                 email: email,
                 password: password
             });
 
-            app.dispatch({ type: ACTIONS.LOGIN_USER, payload: { token: token } })
+            console.log(data.token)
+
+            app.dispatch({ type: ACTIONS.SET_USER, payload: { user: data.user } })
             
-            sessionStorage.setItem('jwtToken', token.data)
+            sessionStorage.setItem('user', data.user)
+            sessionStorage.setItem('jwtToken', data.token)
+            setAuthToken(data.token)
 
             history.push('/dashboard')
-            alert("Successfully logged in")
         }
         catch (err) {
             alert(err.response.data.message)

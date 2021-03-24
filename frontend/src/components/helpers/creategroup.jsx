@@ -3,27 +3,17 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import API from '../../api'
-import {AppContext} from '../../App'
-
 
 function CreateGroup() {
     const[name, setName] = useState('')
-    const app = useContext(AppContext);
 
     async function handleSubmit (event) {
         event.preventDefault();
         
         try {
-            await API.post('groups/newGroup', 
-            {
+            await API.post('groups/newGroup', {
                 name: name
-            },
-            {
-                headers: {
-                    'auth-token': sessionStorage.getItem('jwtToken')
-                },
-            }
-            );
+            });
             
             alert("Group Created")
         }

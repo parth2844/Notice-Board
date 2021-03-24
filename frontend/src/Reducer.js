@@ -2,16 +2,16 @@ import {ACTIONS} from './Actions'
 
 export default function reducer(state, action) {
     switch(action.type) {
-      case ACTIONS.LOGIN_USER:
+      case ACTIONS.SET_USER:
         return { 
-          token: action.payload.token.data,
-          isLoggedIn: true
+          isLoggedIn: true,
+          user: action.payload.user
         }
       
-      case ACTIONS.LOGOUT_USER:
+      case ACTIONS.REMOVE_USER:
         return { 
-          token: null,
-          isLoggedIn: false
+          isLoggedIn: false,
+          user: undefined
         }
       
       default:

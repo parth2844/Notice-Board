@@ -10,7 +10,7 @@ function Navbar() {
         <AppBar position='static'>
             <ToolBar>
                 <Typography style={{width: '100%'}} variant='h4' align='center'>
-                    <Link href='/' underline='none' variant='inherit' color='inherit'>
+                    <Link href='/dashboard' underline='none' variant='inherit' color='inherit'>
                         Notice Board
                     </Link>
                 </Typography>

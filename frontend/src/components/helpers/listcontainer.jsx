@@ -9,7 +9,8 @@ import NoticeData from '../data/noticesdata'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import { AppContext } from '../../App'
 import API from '../../api'
-import axios from 'axios';
+import setAuthToken from '../../setAuthToken'
+
 
 function ListContainer(props) {
     const app = useContext(AppContext)
@@ -17,19 +18,17 @@ function ListContainer(props) {
     const[groups, setGroups] = useState([])
 
     useEffect(async () => {
+        if(!app.state.isLoggedIn)
+            setAuthToken(sessionStorage.getItem('jwtToken'))
         try {
-            const temp = await axios.get('http://localhost:5000/users/groups/', {
-                headers: {
-                    'auth-token': sessionStorage.getItem('jwtToken')
-                }
-            });
+            const temp = await API.get('users/groups/');
             
             setGroups([...groups, ...temp.data], () => console.log(groups))
         }
         catch (err) {
             alert(err.response.data.message)
         }
-    }, groups)
+    }, [])
 
 
     if(props.type === 'group') {

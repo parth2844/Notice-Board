@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import Grid from '@material-ui/core/Grid';
 import Navbar from '../helpers/navbar'
 import JoinGroup from '../helpers/joingroup'
@@ -6,10 +6,22 @@ import CreateGroup from '../helpers/creategroup'
 import ListContainer from '../helpers/listcontainer'
 import Welcome from '../helpers/welcome'
 import {AppContext} from '../../App'
+import setAuthToken from '../../setAuthToken'
+import { withRouter } from "react-router"
+import { useHistory } from "react-router-dom";
+import {ACTIONS} from '../../Actions'
 
 
 function Dashboard() {
+    const history = useHistory();
     const app = useContext(AppContext);
+
+    useEffect(() => {
+        // if(!app.state.isLoggedIn)
+        //     history.push('/')
+
+            setAuthToken(sessionStorage.getItem('jwtToken'))
+    }, [])
 
     return (
         <>
@@ -36,4 +48,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard
+export default withRouter(Dashboard)

@@ -3,26 +3,17 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import API from '../../api'
-import {AppContext} from '../../App'
 
 function JoinGroup() {
     const[accessCode, setAccessCode] = useState('')
-    const app = useContext(AppContext);
 
     async function handleSubmit (event) {
         event.preventDefault();
 
         try {
-            await API.patch('groups/addUser', 
-            {
+            await API.patch('groups/addUser', {
                 groupId: accessCode
-            },
-            {
-                headers: {
-                    'auth-token': sessionStorage.getItem('jwtToken')
-                },
-            }
-            );
+            });
             
             alert("Group Joined")
         }
