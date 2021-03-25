@@ -19,7 +19,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path='/dashboard' exact component={Dashboard} />
-          <Route path='/group' exact component={GroupDetails} />
+          <Route path='/group/:groupId' exact component={GroupDetails} />
           <Route component={Error} />
         </Switch>
       </Router>

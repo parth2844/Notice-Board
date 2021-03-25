@@ -14,7 +14,7 @@ function Welcome(props) {
         <>
         <div style={{display: 'flex'}}>
         <Typography align='left' variant='h6'>
-            Hi {props.name},
+            Hi ,
         </Typography>
 
         

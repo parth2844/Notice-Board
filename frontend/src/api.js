@@ -7,7 +7,7 @@ const AxiosAPI = {
     baseURL: 'http://localhost:5000/',
 
     get: function(url, params){
-        return axios.get(this.baseURL + url, params)
+        return axios.get(this.baseURL + url, {params: params})
     },
 
     post: function(url, params, headers){

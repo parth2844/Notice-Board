@@ -59,7 +59,7 @@ function Dashboard() {
                 </Grid>
                 <Grid item md={6} xs={12} >
                     <div style={{padding: '20px'}}>
-                        <Welcome name={user.name}/>
+                        <Welcome />
                     </div>
                     <div style={{padding: '20px'}}>
                         <JoinGroup />

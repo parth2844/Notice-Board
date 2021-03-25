@@ -5,7 +5,7 @@ const Group = require('../../models/group')
 async function getGroup(req, res, next) {
     let group
     try {
-        group = await Group.findById(req.body.groupId)
+        group = await Group.findById(req.query.groupId)
         if(group == null) {
             return res.status(404).json({ message: 'Cannot find Group'})
         }

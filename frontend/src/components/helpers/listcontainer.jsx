@@ -26,16 +26,16 @@ function ListContainer(props) {
         <>
             <ListSubheader disableSticky>Group Name</ListSubheader>
             <List style={{maxHeight: '70vh', overflow: 'auto'}} disablePadding >                
-                <Users users={UserData}/>
+                <Users users={props.users}/>
             </List>
         </>
     )
     else
     return (
         <>
-            <ListSubheader disableSticky>Access Code: kndndiiojj3323ccas</ListSubheader>
+            <ListSubheader disableSticky>Access Code: {props.groupId}</ListSubheader>
             <List style={{maxHeight: '70vh', overflow: 'auto'}} disablePadding >                
-                <Notices notices={NoticeData}/>
+                <Notices notices={props.notices}/>
             </List>
         </>
     )

@@ -5,7 +5,7 @@ function Notices(props) {
     return (
         <div>
             {props.notices.map((notice, index) =>
-                <Notice noticeName={notice.name} noticeDetails={notice.details} key={index}></Notice>
+                <Notice noticeName={notice.title} noticeDetails={notice.description} key={index}></Notice>
             )} 
         </div>
     )
